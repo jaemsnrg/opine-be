@@ -3,7 +3,7 @@
 
 Table orders as O {
   id bigserial [pk]
-  product varchar [not null, ref: > P.id]
+  product bigint [not null, ref: > P.id]
   customer bigint [not null, ref: > C.id] 
   quantity bigint [not null]
   created_at timestamptz [not null, default: `now()`]
