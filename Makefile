@@ -9,9 +9,12 @@ dropdb:
 	docker exec -it postgresdb dropdb opine_db
 
 migrateup: 
-	migrate -path migration -database "postgresql://root:root@localhost:5432/opine_db?sslmode=disable" -verbose up
+	migrate -path db/migration -database "postgresql://root:root@localhost:5432/opine_db?sslmode=disable" -verbose up
 
 migratedown:
-	migrate -path migration -database "postgresql://root:root@localhost:5432/opine_db?sslmode=disable" -verbose down
+	migrate -path db/migration -database "postgresql://root:root@localhost:5432/opine_db?sslmode=disable" -verbose down
 
-.PHONY: postgres createdb dropdb
+sqlc: 
+	sqlc generate
+
+.PHONY: postgres createdb dropdb sqlc

@@ -6,6 +6,7 @@ Table orders as O {
   product bigint [not null, ref: > P.id]
   customer bigint [not null, ref: > C.id] 
   quantity bigint [not null]
+  order_status orderstatus [not null]
   created_at timestamptz [not null, default: `now()`]
 
   Indexes {
@@ -30,4 +31,10 @@ Table customers as C {
 Table products as P {
   id bigserial [pk]
   name varchar [not null]
+}
+
+Enum orderstatus {
+  processing
+  issue
+  complete
 }

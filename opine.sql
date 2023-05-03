@@ -1,8 +1,15 @@
+CREATE TYPE "orderstatus" AS ENUM (
+  'processing',
+  'issue',
+  'complete'
+);
+
 CREATE TABLE "orders" (
   "id" bigserial PRIMARY KEY,
   "product" bigint NOT NULL,
   "customer" bigint NOT NULL,
   "quantity" bigint NOT NULL,
+  "order_status" orderstatus NOT NULL DEFAULT 'processing',
   "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
